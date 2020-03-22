@@ -26,10 +26,10 @@ def softmax_loss_naive(W, X, y, reg):
     dW = np.zeros_like(W)
 
     #############################################################################
-    # TODO: Compute the softmax loss and its gradient using explicit loops.     #
-    # Store the loss in loss and the gradient in dW. If you are not careful     #
-    # here, it is easy to run into numeric instability. Don't forget the        #
-    # regularization!                                                           #
+    # TODO: 使用显式循环计算softmax损失及其梯度。
+    # 将损失和梯度分别保存在loss和dW中。
+    # 如果你不小心，很容易遇到数值不稳定的情况。 
+    # 不要忘了正则化！                                                           
     #############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -68,10 +68,10 @@ def softmax_loss_vectorized(W, X, y, reg):
     dW = np.zeros_like(W)
 
     #############################################################################
-    # TODO: Compute the softmax loss and its gradient using no explicit loops.  #
-    # Store the loss in loss and the gradient in dW. If you are not careful     #
-    # here, it is easy to run into numeric instability. Don't forget the        #
-    # regularization!                                                           #
+    # TODO: 不使用显式循环计算softmax损失及其梯度。
+    # 将损失和梯度分别保存在loss和dW中。
+    # 如果你不小心，很容易遇到数值不稳定的情况。 
+    # 不要忘了正则化！
     #############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 

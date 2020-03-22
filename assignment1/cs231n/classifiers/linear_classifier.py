@@ -45,15 +45,12 @@ class LinearClassifier(object):
             y_batch = None
 
             #########################################################################
-            # TODO:                                                                 #
-            # Sample batch_size elements from the training data and their           #
-            # corresponding labels to use in this round of gradient descent.        #
-            # Store the data in X_batch and their corresponding labels in           #
-            # y_batch; after sampling X_batch should have shape (batch_size, dim)   #
-            # and y_batch should have shape (batch_size,)                           #
-            #                                                                       #
-            # Hint: Use np.random.choice to generate indices. Sampling with         #
-            # replacement is faster than sampling without replacement.              #
+            # TODO:                               
+            # 从训练数据及其相应的标签中采样batch_size大小的样本，以用于本轮梯度下降。
+            # 将数据存储在X_batch中，并将其相应的标签存储在y_batch中:
+            # 采样后，X_batch的形状为(batch_size,dim)，y_batch的形状(batch_size,)                         
+            #                                                                       
+            # 提示：使用np.random.choice生成索引。 可重复的采样比不可重复的采样要快一点。
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -69,8 +66,8 @@ class LinearClassifier(object):
 
             # perform parameter update
             #########################################################################
-            # TODO:                                                                 #
-            # Update the weights using the gradient and the learning rate.          #
+            # TODO:                                                                 
+            # 使用梯度和学习率更新权重。       
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -99,8 +96,8 @@ class LinearClassifier(object):
         """
         y_pred = np.zeros(X.shape[0])
         ###########################################################################
-        # TODO:                                                                   #
-        # Implement this method. Store the predicted labels in y_pred.            #
+        # TODO:                                  
+        # 实现此方法。将预测的标签存储在y_pred中。           
         ###########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
