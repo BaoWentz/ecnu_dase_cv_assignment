@@ -74,9 +74,8 @@ class TwoLayerNet(object):
         # Compute the forward pass
         scores = None
         #############################################################################
-        # TODO: Perform the forward pass, computing the class scores for the input. #
-        # Store the result in the scores variable, which should be an array of      #
-        # shape (N, C).                                                             #
+        # TODO: 执行向前传播，计算输入数据的每个类的score。
+        # 将结果存储在scores变量中，该变量应该是一个(N, C)维的数组。
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -91,10 +90,10 @@ class TwoLayerNet(object):
         # Compute the loss
         loss = None
         #############################################################################
-        # TODO: Finish the forward pass, and compute the loss. This should include  #
-        # both the data loss and L2 regularization for W1 and W2. Store the result  #
-        # in the variable loss, which should be a scalar. Use the Softmax           #
-        # classifier loss.                                                          #
+        # TODO: 完成向前传播，计算损失。
+        # 这应该包括数据损失和W1和W2的L2正则化项。
+        # 将结果存储在变量loss中，它应该是一个标量。
+        # 使用Softmax损失函数。
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         
@@ -111,9 +110,8 @@ class TwoLayerNet(object):
         # Backward pass: compute gradients
         grads = {}
         #############################################################################
-        # TODO: Compute the backward pass, computing the derivatives of the weights #
-        # and biases. Store the results in the grads dictionary. For example,       #
-        # grads['W1'] should store the gradient on W1, and be a matrix of same size #
+        # TODO: 计算反向传播，计算权重和偏置值的梯度, 将结果存储在grads字典中。
+        # 例如，grads['W1']存储W1的梯度，并且和W1是相同大小的矩阵。
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -167,8 +165,7 @@ class TwoLayerNet(object):
             y_batch = None
 
             #########################################################################
-            # TODO: Create a random minibatch of training data and labels, storing  #
-            # them in X_batch and y_batch respectively.                             #
+            # TODO: 创建一个随机的数据和标签的mini-batch，存储在X_batch和y_batch中。
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -183,10 +180,8 @@ class TwoLayerNet(object):
             loss_history.append(loss)
 
             #########################################################################
-            # TODO: Use the gradients in the grads dictionary to update the         #
-            # parameters of the network (stored in the dictionary self.params)      #
-            # using stochastic gradient descent. You'll need to use the gradients   #
-            # stored in the grads dictionary defined above.                         #
+            # TODO: 使用grads字典中的梯度来更新网络参数(参数存储在字典self.params中)
+            # 使用随机梯度下降法。
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
