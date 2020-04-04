@@ -8,18 +8,14 @@ from cs231n.layer_utils import *
 
 class TwoLayerNet(object):
     """
-    A two-layer fully-connected neural network with ReLU nonlinearity and
-    softmax loss that uses a modular layer design. We assume an input dimension
-    of D, a hidden dimension of H, and perform classification over C classes.
-
-    The architecure should be affine - relu - affine - softmax.
-
-    Note that this class does not implement gradient descent; instead, it
-    will interact with a separate Solver object that is responsible for running
-    optimization.
-
-    The learnable parameters of the model are stored in the dictionary
-    self.params that maps parameter names to numpy arrays.
+    采用模块化设计实现具有ReLU和softmax损失函数的两层全连接神经网络。
+    假设D是输入维度，H是隐藏层维度，一共有C类标签。
+   
+    网络架构应该是：affine - relu - affine - softmax.
+    
+    注意，这个类不实现梯度下降；它将与负责优化的Solver对象进行交互。
+    
+    模型的可学习参数存储在字典self.params中。键是参数名称，值是numpy数组。
     """
 
     def __init__(self, input_dim=3*32*32, hidden_dim=100, num_classes=10,
@@ -48,21 +44,21 @@ class TwoLayerNet(object):
         # weights and biases using the keys 'W2' and 'b2'.                         #
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
+        
         self.params['W1'] = np.random.normal(scale=weight_scale, size=(input_dim, hidden_dim))
-        self.params['b1'] = np.zeros((hidden_dim,))
+        self.params['b1'] = np.zeros((hidden_dim, ))
         self.params['W2'] = np.random.normal(scale=weight_scale, size=(hidden_dim, num_classes))
-        self.params['b2'] = np.zeros((num_classes,))
+        self.params['b2'] = np.zeros((num_classes, ))
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
-
-
+        
+        
     def loss(self, X, y=None):
         """
-        Compute loss and gradient for a minibatch of data.
+        对小批量数据计算损失和梯度
 
         Inputs:
         - X: Array of input data of shape (N, d_1, ..., d_k)
@@ -85,13 +81,9 @@ class TwoLayerNet(object):
         # class scores for X and storing them in the scores variable.              #
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-        w1 = self.params['W1']
-        w2 = self.params['W2']
-        b1 = self.params['b1']
-        b2 = self.params['b2']
-        mid, ar_cache = affine_relu_forward(X, w1, b1)
-        scores, a_cache = affine_forward(mid, w2, b2)
+        
+        h1_out, h1_cache = affine_relu_forward(X, self.params['W1'], self.params['b1'])
+        scores, out_cache = affine_forward(h1_out, self.params['W2'], self.params['b2'])
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ############################################################################
@@ -114,26 +106,30 @@ class TwoLayerNet(object):
         # of 0.5 to simplify the expression for the gradient.                      #
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-        loss, dx = softmax_loss(scores, y)
+        
+        w1 = self.params['W1']
+        w2 = self.params['W2']
+        b1 = self.params['b1']
+        b2 = self.params['b2']
+        
+        
+        loss, dout = softmax_loss(scores, y)
         loss += 0.5 * self.reg * (np.sum(w1 * w1) + np.sum(w2 * w2))
-
-        dx, grads['W2'], grads['b2'] = affine_backward(dx, a_cache)
-
+        
+        dx, grads['W2'], grads['b2'] = affine_backward(dout, out_cache)
         grads['W2'] += self.reg * w2
-
-        dx, grads['W1'], grads['b1'] = affine_relu_backward(dx, ar_cache)
-
+        
+        dx, grads['W1'], grads['b1'] = affine_relu_backward(dx, h1_cache)
         grads['W1'] += self.reg * w1
-
+        
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
 
         return loss, grads
-
-
+    
+    
 class FullyConnectedNet(object):
     """
     A fully-connected neural network with an arbitrary number of hidden layers,

@@ -4,12 +4,11 @@ import numpy as np
 
 def affine_forward(x, w, b):
     """
-    Computes the forward pass for an affine (fully-connected) layer.
-
-    The input x has shape (N, d_1, ..., d_k) and contains a minibatch of N
-    examples, where each example x[i] has shape (d_1, ..., d_k). We will
-    reshape each input into a vector of dimension D = d_1 * ... * d_k, and
-    then transform it to an output vector of dimension M.
+    为仿射(全连接)层计算前向传播
+    
+    输入x的形状为(N, d_1, ..., d_k)，其中包含了N个样本，
+    每个样本x[i]都有形状(d_1, ..., d_k)。我们把每个输入重新reshape成为一个D维向量
+    D = d_1 * ... * d_k，然后将其转换为M维的输出向量。
 
     Inputs:
     - x: A numpy array containing input data, of shape (N, d_1, ..., d_k)
@@ -26,11 +25,9 @@ def affine_forward(x, w, b):
     # will need to reshape the input into rows.                               #
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    x_shape = x.shape
-    x = x.reshape((x.shape[0], -1))
-    out = x @ w + b
-    x = x.reshape(x_shape)
+    
+    reshape_x = np.reshape(x, (x.shape[0], -1))
+    out = np.dot(reshape_x, w) + b
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ###########################################################################
@@ -42,7 +39,7 @@ def affine_forward(x, w, b):
 
 def affine_backward(dout, cache):
     """
-    Computes the backward pass for an affine layer.
+    为仿射层计算反向传播
 
     Inputs:
     - dout: Upstream derivative, of shape (N, M)
@@ -62,14 +59,12 @@ def affine_backward(dout, cache):
     # TODO: Implement the affine backward pass.                               #
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    x_shape = x.shape
-    x = x.reshape((x.shape[0], -1))
-
-    dx = dout @ w.T
-    dx = dx.reshape(x_shape)
-    dw = x.T @ dout
-    db = dout.sum(0)
+    
+    reshape_x = np.reshape(x, (x.shape[0], -1))
+    
+    dx = np.dot(dout, w.T).reshape(x.shape)
+    dw = np.dot(reshape_x.T, dout)
+    db = np.sum(dout, axis=0)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ###########################################################################
@@ -80,7 +75,7 @@ def affine_backward(dout, cache):
 
 def relu_forward(x):
     """
-    Computes the forward pass for a layer of rectified linear units (ReLUs).
+    计算一层整流线性单元(ReLUs)的前向传播。
 
     Input:
     - x: Inputs, of any shape
@@ -94,8 +89,8 @@ def relu_forward(x):
     # TODO: Implement the ReLU forward pass.                                  #
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    out = x.clip(0)
+    
+    out = np.maximum(0, x)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ###########################################################################
@@ -121,9 +116,8 @@ def relu_backward(dout, cache):
     # TODO: Implement the ReLU backward pass.                                 #
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    dx = dout
-    dx[x <= 0] = 0
+    
+    dx = dout * (x > 0)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ###########################################################################
