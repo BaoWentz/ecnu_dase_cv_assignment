@@ -39,19 +39,14 @@ class ThreeLayerConvNet(object):
         self.dtype = dtype
 
         ############################################################################
-        # TODO: Initialize weights and biases for the three-layer convolutional    #
-        # network. Weights should be initialized from a Gaussian centered at 0.0   #
-        # with standard deviation equal to weight_scale; biases should be          #
-        # initialized to zero. All weights and biases should be stored in the      #
-        #  dictionary self.params. Store weights and biases for the convolutional  #
-        # layer using the keys 'W1' and 'b1'; use keys 'W2' and 'b2' for the       #
-        # weights and biases of the hidden affine layer, and keys 'W3' and 'b3'    #
-        # for the weights and biases of the output affine layer.                   #
-        #                                                                          #
-        # IMPORTANT: For this assignment, you can assume that the padding          #
-        # and stride of the first convolutional layer are chosen so that           #
-        # **the width and height of the input are preserved**. Take a look at      #
-        # the start of the loss() function to see how that happens.                #                           
+        # TODO: 初始化三层卷积网络的权重和偏差。
+        #     权重应用以0.0为中心的高斯初始化，标准差等于weight_scale；
+        #     偏差应初始化为零。所有权重和偏差应存储在字典self.params中。
+        #     使用键“ W1”和“ b1”存储卷积层的权重和偏差；使用键“ W2”和“ b2”
+        #     表示隐藏仿射层的权重和偏差，并使用键“ W3”和“ b3”表示输出仿射层的
+        #     权重和偏差。重要说明：对于本次作业，您可以假设第一个卷积层的padding和
+        #     stride以及设置了，这样**输入的width和height就保留了**。看一下loss()
+        #     函数的前部分它是如何做的。
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -93,12 +88,8 @@ class ThreeLayerConvNet(object):
 
         scores = None
         ############################################################################
-        # TODO: Implement the forward pass for the three-layer convolutional net,  #
-        # computing the class scores for X and storing them in the scores          #
-        # variable.                                                                #
-        #                                                                          #
-        # Remember you can use the functions defined in cs231n/fast_layers.py and  #
-        # cs231n/layer_utils.py in your implementation (already imported).         #
+        # TODO: 实现三层卷积网络的正向传播，计算X的每类的分数并将其存储在scores变量中。
+        #请注意，您可以在实现中使用daseCV/fast_layers.py和daseCV/layer_utils.py中定义的功能（已导入）。
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -116,14 +107,11 @@ class ThreeLayerConvNet(object):
 
         loss, grads = 0, {}
         ############################################################################
-        # TODO: Implement the backward pass for the three-layer convolutional net, #
-        # storing the loss and gradients in the loss and grads variables. Compute  #
-        # data loss using softmax, and make sure that grads[k] holds the gradients #
-        # for self.params[k]. Don't forget to add L2 regularization!               #
-        #                                                                          #
-        # NOTE: To ensure that your implementation matches ours and you pass the   #
-        # automated tests, make sure that your L2 regularization includes a factor #
-        # of 0.5 to simplify the expression for the gradient.                      #
+        # TODO: 完成三层卷积网络的反向传播，将损失和梯度存储在变量loss和grads中。
+        # 使用softmax计算损失，并使用grads[k]保存self.params[k]的梯度。不要忘记增加L2正则化！
+        #                                              
+        # NOTE: 为确保您的实现与我们的实现相同并通过自动化测试，请确保您的L2正则化系数为0.5，
+        # 以简化梯度的表达式。
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 

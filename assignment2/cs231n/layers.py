@@ -468,8 +468,8 @@ def dropout_forward(x, dropout_param):
 
     if mode == 'train':
         #######################################################################
-        # TODO: Implement training phase forward pass for inverted dropout.   #
-        # Store the dropout mask in the mask variable.                        #
+        # TODO: 完成训练阶段的dropout正向传播。   
+        # 将dropout掩码存储在mask变量中。                      
         #######################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -482,7 +482,7 @@ def dropout_forward(x, dropout_param):
         #######################################################################
     elif mode == 'test':
         #######################################################################
-        # TODO: Implement the test phase forward pass for inverted dropout.   #
+        # TODO: 完成测试阶段的dropout正向传播。
         #######################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -513,7 +513,7 @@ def dropout_backward(dout, cache):
     dx = None
     if mode == 'train':
         #######################################################################
-        # TODO: Implement training phase backward pass for inverted dropout   #
+        # TODO: 完成训练阶段的dropout反向传播。
         #######################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -558,8 +558,8 @@ def conv_forward_naive(x, w, b, conv_param):
     """
     out = None
     ###########################################################################
-    # TODO: Implement the convolutional forward pass.                         #
-    # Hint: you can use the function np.pad for padding.                      #
+    # TODO: 实现卷积正向传播。
+    # Hint: 你可以使用np.pad函数进行填充。
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -599,7 +599,7 @@ def conv_backward_naive(dout, cache):
     """
     dx, dw, db = None, None, None
     ###########################################################################
-    # TODO: Implement the convolutional backward pass.                        #
+    # TODO: 实现卷积的反向传播 
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     x, w, b, conv_param = cache
@@ -659,7 +659,7 @@ def max_pool_forward_naive(x, pool_param):
     """
     out = None
     ###########################################################################
-    # TODO: Implement the max-pooling forward pass                            #
+    # TODO: 完成最大池化的正向传播。                           #
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -701,7 +701,7 @@ def max_pool_backward_naive(dout, cache):
     """
     dx = None
     ###########################################################################
-    # TODO: Implement the max-pooling backward pass                           #
+    # TODO: 完成最大池化的反向传播                          #
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     x, pool_param = cache
@@ -751,11 +751,10 @@ def spatial_batchnorm_forward(x, gamma, beta, bn_param):
     out, cache = None, None
 
     ###########################################################################
-    # TODO: Implement the forward pass for spatial batch normalization.       #
-    #                                                                         #
-    # HINT: You can implement spatial batch normalization by calling the      #
-    # vanilla version of batch normalization you implemented above.           #
-    # Your implementation should be very short; ours is less than five lines. #
+    # TODO: 完成空间批量归一化的正向传播。
+    #                                                                         
+    # HINT: 您可以通过调用上面实现的批量标准化的原始版本来实现空间批量标准化。
+    # 您的实现应该非常简短；我们的代码少于五行。 
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -788,11 +787,10 @@ def spatial_batchnorm_backward(dout, cache):
     dx, dgamma, dbeta = None, None, None
 
     ###########################################################################
-    # TODO: Implement the backward pass for spatial batch normalization.      #
-    #                                                                         #
-    # HINT: You can implement spatial batch normalization by calling the      #
-    # vanilla version of batch normalization you implemented above.           #
-    # Your implementation should be very short; ours is less than five lines. #
+    # TODO: 为空间批量归一化实现反向传递。     
+    #                                                                         
+    # HINT: 您可以通过调用上面实现的批量标准化的原始版本来实现空间批量标准化。
+    # 您的实现应该非常简短；我们的代码少于五行。 
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -831,11 +829,9 @@ def spatial_groupnorm_forward(x, gamma, beta, G, gn_param):
     out, cache = None, None
     eps = gn_param.get('eps',1e-5)
     ###########################################################################
-    # TODO: Implement the forward pass for spatial group normalization.       #
-    # This will be extremely similar to the layer norm implementation.        #
-    # In particular, think about how you could transform the matrix so that   #
-    # the bulk of the code is similar to both train-time batch normalization  #
-    # and layer normalization!                                                # 
+    # TODO: 为空间组归一化实现正向传播。   
+    # 这与层归一化的实现极为相似。        
+    # 尤其要考虑如何转换矩阵，以使大部分代码与训练时批处理归一化和层归一化相似！
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     cache = {}
@@ -881,8 +877,8 @@ def spatial_groupnorm_backward(dout, cache):
     dx, dgamma, dbeta = None, None, None
 
     ###########################################################################
-    # TODO: Implement the backward pass for spatial group normalization.      #
-    # This will be extremely similar to the layer norm implementation.        #
+    # TODO: 为空间组归一化实现反反向传播。     
+    # 这将与层归一化的实现极为相似。        
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
