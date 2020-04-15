@@ -13,27 +13,20 @@ from cs231n import optim
 
 class Solver(object):
     """
-    A Solver encapsulates all the logic necessary for training classification
-    models. The Solver performs stochastic gradient descent using different
-    update rules defined in optim.py.
+    Solver封装了模型训练所需的所有逻辑。
+    Solver使用optim.py中定义好的不同更新规则执行随机梯度下降。
+    
+    solver同时接受训练、验证数据和标签的输入，
+    它可以定期检查训练和验证数据的分类准确性，监视是否存在过拟合。
+    
+    要训练模型，首先要构造一个Solver实例，传递模型、数据集和超参数(learning rate, batch size, etc)。
+    然后调用train()方法训练模型。
+    
+    训练结束后，经过更新在验证集上优化后的模型参数会保存在model.params中。此外，损失值的
+    历史训练信息会保存在solver.loss_history中，还有solver.train_acc_history和
+    solver.val_acc_history中会分别保存训练集和验证集在每一次epoch时的模型准确率。
 
-    The solver accepts both training and validataion data and labels so it can
-    periodically check classification accuracy on both training and validation
-    data to watch out for overfitting.
-
-    To train a model, you will first construct a Solver instance, passing the
-    model, dataset, and various options (learning rate, batch size, etc) to the
-    constructor. You will then call the train() method to run the optimization
-    procedure and train the model.
-
-    After the train() method returns, model.params will contain the parameters
-    that performed best on the validation set over the course of training.
-    In addition, the instance variable solver.loss_history will contain a list
-    of all losses encountered during training and the instance variables
-    solver.train_acc_history and solver.val_acc_history will be lists of the
-    accuracies of the model on the training and validation set at each epoch.
-
-    Example usage might look something like this:
+    样例如下：
 
     data = {
       'X_train': # training data
