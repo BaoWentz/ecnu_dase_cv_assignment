@@ -114,7 +114,7 @@ class TwoLayerNet(object):
         
         
         loss, dout = softmax_loss(scores, y)
-        loss += 0.5 * self.reg * (np.sum(w1 * w1) + np.sum(w2 * w2))
+        loss += 0.5 * self.reg * (np.sum(w1 ** 2) + np.sum(w2 ** 2))
         
         dx, grads['W2'], grads['b2'] = affine_backward(dout, out_cache)
         grads['W2'] += self.reg * w2
@@ -132,18 +132,15 @@ class TwoLayerNet(object):
     
 class FullyConnectedNet(object):
     """
-    A fully-connected neural network with an arbitrary number of hidden layers,
-    ReLU nonlinearities, and a softmax loss function. This will also implement
-    dropout and batch/layer normalization as options. For a network with L layers,
-    the architecture will be
-
-    {affine - [batch/layer norm] - relu - [dropout]} x (L - 1) - affine - softmax
-
-    where batch/layer normalization and dropout are optional, and the {...} block is
-    repeated L - 1 times.
-
-    Similar to the TwoLayerNet above, learnable parameters are stored in the
-    self.params dictionary and will be learned using the Solver class.
+    一个任意隐藏层数和神经元数的全连接神经网络，其中 ReLU 激活函数，sofmax 损失函数，同时可选的
+    采用 dropout 和 batch normalization(批量归一化)。那么，对于一个L层的神经网络来说，其框架是：
+    
+    {affine ‐ [batch norm] ‐ relu ‐ [dropout]} x (L ‐ 1) ‐ affine ‐ softmax
+    
+    其中的[batch norm]和[dropout]是可选非必须的，框架中{...}部分将会重复L‐1次，代表L‐1 个隐藏层。
+    
+    与我们在上面定义的 TwoLayerNet() 类保持一致，所有待学习的参数都会存在self.params 字典中，
+    并且最终会被最优化 Solver() 类训练学习得到。
     """
 
     def __init__(self, hidden_dims, input_dim=3*32*32, num_classes=10,

@@ -197,8 +197,8 @@ def batchnorm_forward(x, gamma, beta, bn_param):
         #######################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        mu = np.mean(x, axis=0)
-        var =  np.var(x, axis=0)
+        mu = np.mean(x, axis=0) #列向量的均值
+        var =  np.var(x, axis=0) #列向量的方差
         running_mean = momentum * running_mean + (1 - momentum) * mu
         running_var = momentum * running_var + (1 - momentum) * var
         std = np.sqrt(var + eps)
